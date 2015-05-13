@@ -1,101 +1,112 @@
-
 class MinStack(object):
-	
-	def __init__(self):
-		''' Initialize magic method for the MinStack
-		data structure
-		'''
-		self.stack = list()
-		# The minimum element in the stack will always be 
-		# at the top of this stack
-		self.min_stack = list()
+''' Stack Class that keeps track of its minimum element
+and access it in O(1) time
 
+Operations:
 
-	def isEmpty(self):
-		''' Returns true if this instance of MinStack is empty
-		false otherwise
+__str__()
+__repr__()
 
-		Operation takes O(1) time
-		'''
-		return len(self.stack) == 0
+isEmpty()
+peek()
+pop()
+push(...)
+peekMin()
+popMin()
+'''
 
-	def push(self, elem):
-		''' Adds element to stack of values
+    def __init__(self):
+        ''' Initialize magic method for the MinStack
+        data structure
+        '''
+        self.stack = list()
+        # The minimum element in the stack will always be
+        # at the top of this stack
+        self.min_stack = list()
 
-		Operation takes O(1) time
-		'''
+    def isEmpty(self):
+        ''' Returns true if this instance of MinStack is empty
+        false otherwise
 
-		# Check is new min is pushed
-		if self.isEmpty() or elem <= self.peekMin():
-			# Pushes new smalled value onto minStack
-			self.min_stack.append(elem)
+        Operation takes O(1) time
+        '''
+        return len(self.stack) == 0
 
-		self.stack.append(elem)
+    def push(self, elem):
+        ''' Adds element to stack of values
 
-	def pop(self):
-		''' Pop first element off of value stack
-		and returns that value 
-		
-		Operation takes O(1) time
-		'''
-		if self.isEmpty():
-			raise Exception("MinStack is empty. No element to pop")
+        Operation takes O(1) time
+        '''
 
-		elem = self.stack.pop()
-		min_elem = self.min_stack[len(self.min_stack) - 1]
+        # Check is new min is pushed
+        if self.isEmpty() or elem <= self.peekMin():
+            # Pushes new smalled value onto minStack
+            self.min_stack.append(elem)
 
-		# Check is the value poped was the old minimum
-		if elem == min_elem:
-			self.min_stack.pop()
+        self.stack.append(elem)
 
-		return elem
+    def pop(self):
+        ''' Pop first element off of value stack
+        and returns that value
 
-	def peek(self):
-		''' Returns the element at the top of the stack 
-		without removing it
+        Operation takes O(1) time
+        '''
+        if self.isEmpty():
+            raise Exception("MinStack is empty. No element to pop")
 
-		Operation takes O(1) time
-		'''
-		if self.isEmpty():
-			return None
-		return self.stack[len(self.stack) - 1]
+        elem = self.stack.pop()
+        min_elem = self.min_stack[len(self.min_stack) - 1]
 
-	def peekMin(self):
-		''' Returns the minimum element in the current stack
+        # Check is the value poped was the old minimum
+        if elem == min_elem:
+            self.min_stack.pop()
 
-		Operation takes O(1) time
-		'''
-		if self.isEmpty():
-			return None
-		return self.min_stack[len(self.min_stack) - 1]
+        return elem
 
-	def popMin(self):
-		''' Removes the minimum value from the stack
-		Maintains the current ordering of the stack
-		Return the stacks minimum value
+    def peek(self):
+        ''' Returns the element at the top of the stack
+        without removing it
 
-		Operation takes O(n) time
-		'''
-		pass
-		if self.isEmpty():
-			raise Exception("MinStack is empty. No element to pop")
-		pass
-		# min_elem = self.min_stack.pop()
-		# curr_elem = None
-		# buffer = list()
-		# while curr_elem != min_elem:
+        Operation takes O(1) time
+        '''
+        if self.isEmpty():
+            return None
+        return self.stack[len(self.stack) - 1]
 
+    def peekMin(self):
+        ''' Returns the minimum element in the current stack
 
-	def __str__(self):
-		name = "MinStack\n"
-		top = "-----bottom---\n"
-		elements = ""
-		for elem in self.stack:
-			elements += str(elem) + '\n'
-		bottom = "----top----\n"
+        Operation takes O(1) time
+        '''
+        if self.isEmpty():
+            return None
+        return self.min_stack[len(self.min_stack) - 1]
 
-		return '{}{}{}{}'.format(name, top, elements, bottom)
+    def popMin(self):
+        ''' Removes the minimum value from the stack
+        Maintains the current ordering of the stack
+        Return the stacks minimum value
 
-		
-	def __repr__(self):
-		return __str__()
+        Operation takes O(n) time
+        '''
+        pass
+        if self.isEmpty():
+            raise Exception("MinStack is empty. No element to pop")
+        pass
+        # min_elem = self.min_stack.pop()
+        # curr_elem = None
+        # buffer = list()
+        # while curr_elem != min_elem:
+
+    def __str__(self):
+        name = "MinStack\n"
+        top = "-----bottom---\n"
+        elements = ""
+        for elem in self.stack:
+            elements += str(elem) + '\n'
+        bottom = "----top----\n"
+
+        return '{}{}{}{}'.format(name, top, elements, bottom)
+
+    def __repr__(self):
+        return __str__()

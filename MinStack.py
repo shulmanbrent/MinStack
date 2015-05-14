@@ -99,15 +99,34 @@ class MinStack(object):
     def popMin(self):
         ''' Removes the minimum value from the stack
         Maintains the current ordering of the stack
-        Return the stacks minimum value
 
-        Operation takes O(n) time
+        If the minimum value appears multiple times, this method
+        removes the value which is closest to the top of the stack
+
+        Returns the stacks minimum value
+
+        Operation currently takes O(n) time
         '''
-        pass
+
         if self.isEmpty():
             raise Exception("MinStack is empty. No element to pop")
-        pass
-        # min_elem = self.min_stack.pop()
-        # curr_elem = None
-        # buffer = list()
-        # while curr_elem != min_elem:\
+
+        last_pop = None
+        min_elem = self.peekMin()
+        buffer_stack = list()
+
+        # Checks if we have popped the minimum element in the stack
+        # Continues poping using the self.pop() method until we do
+        while last_pop != min_elem:
+            last_pop = self.pop()
+            buffer_stack.append(last_pop)
+
+        # Last element added to buffer was the minimum element
+        # We need to pop that last element as to not add it back to stack
+        buffer_stack.pop()
+
+        while len(buffer_stack) != 0:
+            temp = buffer_stack.pop()
+            self.push(temp)
+
+        return min_elem

@@ -24,7 +24,6 @@ class MinStack(object):
         # at the top of this stack
         self.min_stack = list()
 
-
     def __str__(self):
         name = "MinStack\n"
         top = "-----bottom---\n"

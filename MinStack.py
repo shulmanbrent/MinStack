@@ -1,19 +1,19 @@
 class MinStack(object):
-''' Stack Class that keeps track of its minimum element
-and access it in O(1) time
+    ''' Stack Class that keeps track of its minimum element
+    and access it in O(1) time
 
-Operations:
+    Method Names:
 
-__str__()
-__repr__()
+    __str__()
+    __repr__()
 
-isEmpty()
-peek()
-pop()
-push(...)
-peekMin()
-popMin()
-'''
+    isEmpty()
+    peek()
+    pop()
+    push(...)
+    peekMin()
+    popMin()
+    '''
 
     def __init__(self):
         ''' Initialize magic method for the MinStack
@@ -23,6 +23,20 @@ popMin()
         # The minimum element in the stack will always be
         # at the top of this stack
         self.min_stack = list()
+
+
+    def __str__(self):
+        name = "MinStack\n"
+        top = "-----bottom---\n"
+        elements = ""
+        for elem in self.stack:
+            elements += str(elem) + '\n'
+        bottom = "----top----\n"
+
+        return '{}{}{}{}'.format(name, top, elements, bottom)
+
+    def __repr__(self):
+        return __str__()
 
     def isEmpty(self):
         ''' Returns true if this instance of MinStack is empty
@@ -96,17 +110,4 @@ popMin()
         # min_elem = self.min_stack.pop()
         # curr_elem = None
         # buffer = list()
-        # while curr_elem != min_elem:
-
-    def __str__(self):
-        name = "MinStack\n"
-        top = "-----bottom---\n"
-        elements = ""
-        for elem in self.stack:
-            elements += str(elem) + '\n'
-        bottom = "----top----\n"
-
-        return '{}{}{}{}'.format(name, top, elements, bottom)
-
-    def __repr__(self):
-        return __str__()
+        # while curr_elem != min_elem:\
